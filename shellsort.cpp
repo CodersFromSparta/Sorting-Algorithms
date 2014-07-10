@@ -1,9 +1,18 @@
+/* ShellSort 
+algorithm source - WIKIPEDIA */
+
+
+
+
 #include<iostream>
 #include<algorithm>
 #include<math.h>
 
 using namespace std;
-int a[100], n;
+
+int a[100], n; // array containing the elements to be sorted and n is the number of elements
+
+// this function sorts the subarrays by bubble sort
 void subsort(int start, int gap)
 {
     int i, j, temp;
@@ -27,7 +36,8 @@ int main()
     cin>>n;
     for(i=0; i<n; i++)
         cin>>a[i];
-    int gaps[10], l=0, k;
+        
+    int gaps[10], l=0, k; // gaps array contains the gaps (intervals) to make subarrays
 
     for(i=0; i<n; i++)
     cout<<a[i]<<" ";
@@ -40,14 +50,17 @@ int main()
         l++;
         //cout<<(int)(n/(pow(2,i+1))) <<" ";
     }
+// 'l' keeps the count of interval
+// intervals are - n/(2^i) till this value becomes 1
 
     for(i=0; i<l ; i++ )
     {
         for(k=0; k+gaps[i]<n; k++)
             {
-                subsort(k, gaps[i]);
-                for(int p=0; p<n; p++)
-            cout<<a[p]<<" ";
+                subsort(k, gaps[i]); // sorting of subarray with the gap = gaps[i]
+                
+                for(int p=0; p<n; p++) // printing after each subarray sort
+            cout<<a[p]<<" ";  
             cout<<"\n\n";
             }
         //for(int p=0; p<n; p++)
@@ -55,7 +68,7 @@ int main()
           //  cout<<"\n\n";
     }
 
-    for(i=0; i<n; i++)
+    for(i=0; i<n; i++) // final sorted array
     cout<<a[i]<<" ";
 
 }
